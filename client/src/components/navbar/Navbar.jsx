@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { LogIn, LogOut, Menu, X } from "lucide-react";
+import { LogIn, LogOut, Menu, Moon, Sun, X } from "lucide-react";
 import { useMovieContext } from "../../context/Context";
 import { BiSolidCameraMovie } from "react-icons/bi";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { user, signOutUser } = useMovieContext();
+  const { user, signOutUser, theme, toggleTheme, loading } = useMovieContext();
 
   const handleSignout = () => {
     signOutUser();
@@ -16,11 +16,15 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
-  console.log(user);
+  //console.log(user);
 
   return (
-    <nav className="bg-white shadow-md sticky top-0 z-50">
-      <div className=" container mx-auto flex justify-between items-center py-4 px-4 ">
+    <nav
+      className={` ${
+        theme === "dark" ? "bg-slate-800 text-gray-200" : "bg-white "
+      } shadow-lg sticky top-0 z-50`}
+    >
+      <div className=" md:px-8 lg:px-20 flex justify-between items-center py-4 px-4 ">
         {/* Logo */}
         <div className="text-2xl font-semibold text-blue-600 flex items-center">
           <BiSolidCameraMovie />
@@ -32,27 +36,29 @@ const Navbar = () => {
           <NavLink
             to="/"
             className={({ isActive }) =>
-              `text-gray-700 hover:text-blue-600 transition ${
+              ` hover:text-blue-600 transition ${
                 isActive ? "font-bold text-yellow-600 underline" : ""
               }`
             }
           >
             Home
           </NavLink>
-          <NavLink
-            to="all-movies"
-            className={({ isActive }) =>
-              `text-gray-700 hover:text-blue-600 transition ${
-                isActive ? "font-bold text-yellow-600 underline" : ""
-              }`
-            }
-          >
-            All Movies
-          </NavLink>
+          {user && (
+            <NavLink
+              to="all-movies"
+              className={({ isActive }) =>
+                ` hover:text-blue-600 transition ${
+                  isActive ? "font-bold text-yellow-600 underline" : ""
+                }`
+              }
+            >
+              All Movies
+            </NavLink>
+          )}
           <NavLink
             to="/community"
             className={({ isActive }) =>
-              `text-gray-700 hover:text-blue-600 transition ${
+              ` hover:text-blue-600 transition ${
                 isActive ? "font-bold text-yellow-600 underline" : ""
               }`
             }
@@ -63,7 +69,7 @@ const Navbar = () => {
             <NavLink
               to="/favorites"
               className={({ isActive }) =>
-                `text-gray-700 hover:text-blue-600 transition ${
+                ` hover:text-blue-600 transition ${
                   isActive ? "font-bold text-yellow-600 underline" : ""
                 }`
               }
@@ -75,7 +81,7 @@ const Navbar = () => {
             <NavLink
               to="/add-movie"
               className={({ isActive }) =>
-                `text-gray-700 hover:text-blue-600 transition ${
+                ` hover:text-blue-600 transition ${
                   isActive ? "font-bold text-yellow-600 underline" : ""
                 }`
               }
@@ -85,7 +91,7 @@ const Navbar = () => {
           )}
         </div>
 
-        <div className="hidden md:flex gap-2">
+        <div className="hidden md:flex gap-4">
           <div className="relative flex items-center space-x-4">
             {user ? (
               <>
@@ -107,7 +113,7 @@ const Navbar = () => {
                 <NavLink
                   onClick={handleSignout}
                   className={({ isActive }) =>
-                    `text-gray-700 hover:text-blue-600 transition flex items-center gap-1 border border-gray-200 px-2 py-1 ${
+                    ` hover:text-blue-600 transition flex items-center gap-1 border border-gray-200 px-2 py-1 ${
                       isActive ? "px-2 py-1 text-blue-600 " : ""
                     }`
                   }
@@ -120,7 +126,7 @@ const Navbar = () => {
               <NavLink
                 to="/auth/login"
                 className={({ isActive }) =>
-                  `text-gray-700 hover:text-blue-600 transition flex items-center gap-1 border border-gray-200 px-2 py-1${
+                  ` hover:text-blue-600 transition flex items-center gap-1 border border-gray-200 px-2 py-1${
                     isActive
                       ? "font-bold px-2 py-1 text-yellow-600 underline"
                       : ""
@@ -136,7 +142,7 @@ const Navbar = () => {
             <NavLink
               to="/auth/register"
               className={({ isActive }) =>
-                `text-gray-700 hover:text-blue-600 transition border border-gray-200 px-2 py-1 ${
+                ` hover:text-blue-600 transition border border-gray-200 px-2 py-1 ${
                   isActive ? " px-2 py-1 text-yellow-600 underline" : ""
                 }`
               }
@@ -144,6 +150,18 @@ const Navbar = () => {
               Register
             </NavLink>
           )}
+          <div className="flex items-center space-x-4">
+            <button
+              onClick={toggleTheme}
+              className="text-gray-500 dark:text-gray-300"
+            >
+              {theme === "dark" ? (
+                <Sun size={24} className="text-yellow-500" />
+              ) : (
+                <Moon size={24} className="text-gray-400" />
+              )}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu Button */}
@@ -161,7 +179,7 @@ const Navbar = () => {
             )}
           </div>
           <button
-            className="block md:hidden focus:outline-none text-gray-700"
+            className="block md:hidden focus:outline-none "
             onClick={toggleMenu}
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -171,12 +189,12 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-white border-t">
+        <div className="md:hidden dark:bg-gray-800 dark:text-gray-200 shadow-lg">
           <div className="flex items-center flex-col space-y-4 px-6 py-4">
             <NavLink
               to="/"
               className={({ isActive }) =>
-                `text-gray-700 hover:text-blue-600 transition ${
+                ` hover:text-blue-600 transition ${
                   isActive ? "font-bold text-yellow-600 underline" : ""
                 }`
               }
@@ -184,21 +202,23 @@ const Navbar = () => {
             >
               Home
             </NavLink>
-            <NavLink
-              to="/all-movies"
-              className={({ isActive }) =>
-                `text-gray-700 hover:text-blue-600 transition ${
-                  isActive ? "font-bold text-yellow-600 underline" : ""
-                }`
-              }
-              onClick={() => setIsOpen(false)}
-            >
-              All Movies
-            </NavLink>
+            {user && (
+              <NavLink
+                to="/all-movies"
+                className={({ isActive }) =>
+                  ` hover:text-blue-600 transition ${
+                    isActive ? "font-bold text-yellow-600 underline" : ""
+                  }`
+                }
+                onClick={() => setIsOpen(false)}
+              >
+                All Movies
+              </NavLink>
+            )}
             <NavLink
               to="/community"
               className={({ isActive }) =>
-                `text-gray-700 hover:text-blue-600 transition ${
+                ` hover:text-blue-600 transition ${
                   isActive ? "font-bold text-yellow-600 underline" : ""
                 }`
               }
@@ -210,7 +230,7 @@ const Navbar = () => {
               <NavLink
                 to="/favorites"
                 className={({ isActive }) =>
-                  `text-gray-700 hover:text-blue-600 transition ${
+                  ` hover:text-blue-600 transition ${
                     isActive ? "font-bold text-yellow-600 underline" : ""
                   }`
                 }
@@ -223,7 +243,7 @@ const Navbar = () => {
               <NavLink
                 to="/add-movie"
                 className={({ isActive }) =>
-                  `text-gray-700 hover:text-blue-600 transition ${
+                  ` hover:text-blue-600 transition ${
                     isActive ? "font-bold text-yellow-600 underline" : ""
                   }`
                 }
@@ -236,7 +256,7 @@ const Navbar = () => {
               to="/auth/login"
               onClick={user ? handleSignout : () => setIsOpen(false)}
               className={({ isActive }) =>
-                `text-gray-700 hover:text-blue-600 transition ${
+                ` hover:text-blue-600 transition ${
                   isActive ? "font-bold text-yellow-600 underline" : ""
                 }`
               }
@@ -247,7 +267,7 @@ const Navbar = () => {
               <NavLink
                 to="/auth/register"
                 className={({ isActive }) =>
-                  `text-gray-700 hover:text-blue-600 transition ${
+                  ` hover:text-blue-600 transition ${
                     isActive ? "font-bold text-yellow-600 underline" : ""
                   }`
                 }
@@ -256,6 +276,19 @@ const Navbar = () => {
                 Register
               </NavLink>
             )}
+
+            <div className="flex items-center space-x-4">
+              <button
+                onClick={toggleTheme}
+                className="text-gray-500 dark:text-gray-300"
+              >
+                {theme === "dark" ? (
+                  <Sun size={24} className="text-yellow-500" />
+                ) : (
+                  <Moon size={24} className="text-gray-400" />
+                )}
+              </button>
+            </div>
           </div>
         </div>
       )}

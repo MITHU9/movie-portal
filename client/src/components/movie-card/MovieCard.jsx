@@ -3,25 +3,19 @@ import { Rating } from "react-simple-star-rating"; // Import Rating component
 
 const MovieCard = ({ movie, children }) => {
   return (
-    <div className="max-w-md rounded-lg overflow-hidden shadow-lg bg-white">
+    <div
+      className={`max-w-md rounded-lg overflow-hidden shadow-lg bg-white dark:bg-gray-700 dark:text-gray-300`}
+    >
       <img
         src={movie.poster}
         alt={`${movie.title} Poster`}
-        className="w-full h-[40vh] lg:h-[45vh] object-cover"
+        className="w-full h-[40vh] md:h-[25vh] lg:h-[35vh] object-cover"
       />
       <div className="p-4">
-        <h3 className="text-xl font-semibold text-gray-800 truncate">
-          {movie.title}
-        </h3>
-        <p className="text-sm text-gray-600 mt-2">
-          <strong>Genre:</strong> {movie.genre.join(", ")}
-        </p>
-        <p className="text-sm text-gray-600">
-          <strong>Duration:</strong> {movie.duration} minutes
-        </p>
-        <p className="text-sm text-gray-600">
-          <strong>Release Year:</strong> {movie.releaseYear}
-        </p>
+        <h3 className="text-xl font-semibold truncate">{movie.title}</h3>
+        <p className="text-sm  mt-2 font-semibold">{movie.genre.join(", ")}</p>
+        <p className="text-sm ">{movie.duration} minutes</p>
+        <p className="text-sm">{movie.releaseYear}</p>
 
         {/* Rating Section */}
         <div className="flex items-center mt-2">
@@ -34,9 +28,7 @@ const MovieCard = ({ movie, children }) => {
             emptyColor="#E0E0E0"
             className="inline-block"
           />
-          <span className="text-gray-700 font-semibold ml-2 mt-1.5">
-            {movie.rating}
-          </span>
+          <span className=" font-semibold ml-2 mt-1.5">{movie.rating}</span>
         </div>
 
         <div className="text-right mt-4">

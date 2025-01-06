@@ -104,7 +104,7 @@ const UpComing = () => {
           {movies.map((movie) => (
             <div
               key={movie.id}
-              className="bg-gray-800 rounded-lg overflow-hidden shadow-lg"
+              className="dark:bg-gray-800 dark:text-gray-200 text-gray-700 bg-slate-200 rounded-lg overflow-hidden shadow-lg"
               data-aos="fade-up"
             >
               <img
@@ -114,11 +114,13 @@ const UpComing = () => {
               />
               <div className="p-4">
                 <h3 className="text-xl font-bold mb-2">{movie.title}</h3>
-                <p className="text-sm text-gray-400 mb-4">
+                <p className="text-sm text-gray-500 dark:text-gray-300 mb-4">
                   Release Date:{" "}
                   {new Date(movie.releaseDate).toLocaleDateString()}
                 </p>
-                <p className="text-gray-300 text-sm">{movie.description}</p>
+                <p className="text-gray-500 dark:text-gray-300 text-sm">
+                  {movie.description}
+                </p>
               </div>
             </div>
           ))}

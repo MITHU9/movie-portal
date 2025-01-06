@@ -24,7 +24,9 @@ const AllMovies = () => {
     }
 
     try {
-      fetch(`http://localhost:3000/search-movies/${searchTerm}`)
+      fetch(
+        `https://server-side-movie-portal.vercel.app/search-movies/${searchTerm}`
+      )
         .then((res) => res.json())
         .then((data) => {
           if (data.length > 0) {
@@ -47,7 +49,7 @@ const AllMovies = () => {
     );
   }
 
-  console.log("ALL", favorites.length);
+  //console.log("ALL", favorites.length);
 
   return (
     <div className="py-10">
@@ -94,7 +96,7 @@ const AllMovies = () => {
         className="flex items-center justify-center mt-8 px-6 lg:px-20"
         data-aos="fade-up"
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
           {movies.map((movie) => (
             <div key={movie._id} data-aos="zoom-in">
               <MovieCard movie={movie} />

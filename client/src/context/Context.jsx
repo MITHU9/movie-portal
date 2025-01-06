@@ -25,6 +25,7 @@ export const useMovieContext = () => {
 
 const ContextProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
+  const [movies, setMovies] = useState([]);
   const [user, setUser] = useState(null);
   const [favorites, setFavorites] = useState([]);
   const [previousRoute, setPreviousRoute] = useState("/");
@@ -56,9 +57,22 @@ const ContextProvider = ({ children }) => {
     return signOut(auth);
   };
 
+  //get home page data
+
+  useEffect(() => {
+    fetch("https://server-side-movie-portal.vercel.app/movies")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data) {
+          setMovies(data);
+          setDataLoad(true);
+        }
+      });
+  }, []);
+
   //delete favorite from database
   const deleteFavorite = (id) => {
-    fetch(`http://localhost:3000/delete-favorite/${id}`, {
+    fetch(`https://server-side-movie-portal.vercel.app/delete-favorite/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -113,7 +127,9 @@ const ContextProvider = ({ children }) => {
   //favorite movies
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:3000/favorites/${user?.email}`)
+      fetch(
+        `https://server-side-movie-portal.vercel.app/favorites/${user?.email}`
+      )
         .then((res) => res.json())
         .then((data) => {
           setFavorites(data);
@@ -121,7 +137,7 @@ const ContextProvider = ({ children }) => {
     }
   }, [dataLoad, user?.email]);
 
-  //console.log(favorites);
+  console.log(user);
 
   return (
     <MovieContext.Provider
@@ -142,6 +158,7 @@ const ContextProvider = ({ children }) => {
         previousRoute,
         dataLoad,
         setDataLoad,
+        movies,
       }}
     >
       {children}

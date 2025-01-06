@@ -61,7 +61,7 @@ const AddMovie = () => {
     console.log("Movie Data: ", movieData);
 
     // Send movieData to the server
-    fetch("http://localhost:3000/add-movie", {
+    fetch("https://server-side-movie-portal.vercel.app/add-movie", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

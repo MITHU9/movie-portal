@@ -11,7 +11,7 @@ const Login = () => {
   const location = useLocation();
 
   //console.log(location);
-  const { signInWithGoogle, signInWithEmail, setLoading, loading } =
+  const { signInWithGoogle, signInWithEmail, setLoading, loading, user } =
     useMovieContext();
   const navigate = useNavigate();
 
@@ -53,6 +53,10 @@ const Login = () => {
       })
       .finally(() => setLoading(false));
   };
+
+  if (user) {
+    navigate(from);
+  }
 
   if (loading) {
     return (

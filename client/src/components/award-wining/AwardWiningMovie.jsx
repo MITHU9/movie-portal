@@ -29,7 +29,7 @@ const awardWinningMovies = [
 
 const AwardWinningMovie = () => {
   return (
-    <section className="py-16 bg-gradient-to-r from-blue-900 via-gray-800 to-blue-900 text-white">
+    <section className="py-16 bg-gray-300 dark:bg-gradient-to-r dark:from-blue-900 dark:via-gray-800 dark:to-gray-950 ">
       <div className="container mx-auto md:px-6">
         {/* Header */}
         <div className="text-center mb-12">
@@ -47,7 +47,7 @@ const AwardWinningMovie = () => {
           {awardWinningMovies.map((movie) => (
             <div
               key={movie.id}
-              className="bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105"
+              className=" rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105 dark:bg-gray-900 dark:text-gray-200 bg-white text-gray-800"
             >
               {/* Movie Poster */}
               <img
@@ -60,9 +60,6 @@ const AwardWinningMovie = () => {
                 <h3 className="text-xl font-semibold">{movie.title}</h3>
                 <p className="mt-2 text-gray-400">{movie.award}</p>
                 <p className="mt-1 text-gray-500">{movie.year}</p>
-                <button className="mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded transition-colors">
-                  Learn More
-                </button>
               </div>
             </div>
           ))}

@@ -8,10 +8,11 @@ import UpComing from "../components/upcomming/UpComing";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import PricingSection from "../components/pricing/PricingSection";
+import MovieCategories from "../components/category/MovieCategory";
 
 const Home = () => {
-  const movies = useLoaderData();
-  const { loading, theme, toggleTheme } = useMovieContext();
+  const { loading, theme, movies } = useMovieContext();
   //console.log(movies);
 
   useEffect(() => {
@@ -28,21 +29,12 @@ const Home = () => {
 
   return (
     <div
-      className={`min-h-screen px-2 md:px-6 lg:px-20 ${
+      className={`min-h-screen  ${
         theme === "dark"
           ? "bg-gray-900 text-white"
           : "bg-gray-300 text-gray-700"
       }`}
     >
-      <header className="flex justify-between items-center p-4">
-        <h1 className="text-2xl font-bold">Movie Collection</h1>
-        <button
-          onClick={toggleTheme}
-          className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700"
-        >
-          {theme === "dark" ? "Light Mode" : "Dark Mode"}
-        </button>
-      </header>
       <Banner />
       <section className="py-20">
         <div className="text-center" data-aos="fade-up">
@@ -55,13 +47,13 @@ const Home = () => {
         </div>
         <div className="flex items-center justify-center mt-8 ">
           <div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-11/12"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-11/12 mx-auto "
             data-aos="fade-up"
           >
             {movies.map((movie) => (
               <div
                 key={movie._id}
-                className="transform transition-transform duration-500 hover:scale-105"
+                className="transform transition-transform duration-500 hover:scale-105 items-center justify-center flex"
                 data-aos="zoom-in"
               >
                 <MovieCard movie={movie} />
@@ -82,11 +74,17 @@ const Home = () => {
           <ArrowBigRight size={24} />
         </Link>
       </div>
+      <section>
+        <MovieCategories />
+      </section>
       <section className="mt-10">
         <AwardWinningMovie />
       </section>
       <section className="mt-10">
         <UpComing />
+      </section>
+      <section>
+        <PricingSection />
       </section>
     </div>
   );

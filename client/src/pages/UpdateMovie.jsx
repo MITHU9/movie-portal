@@ -65,13 +65,16 @@ const UpdateMovie = () => {
     const movieData = { ...data, rating, userMail, genre: selectedGenres };
 
     // Send movieData to the server
-    fetch(`http://localhost:3000/update-movie/${loaderData?._id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(movieData),
-    })
+    fetch(
+      `https://server-side-movie-portal.vercel.app/update-movie/${loaderData?._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(movieData),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {

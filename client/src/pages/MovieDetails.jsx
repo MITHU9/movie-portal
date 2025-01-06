@@ -24,9 +24,12 @@ const MovieDetails = () => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        fetch(`http://localhost:3000/delete-movie/${movie._id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://server-side-movie-portal.vercel.app/delete-movie/${movie._id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then(() => {
             (res) => res.json();
           })
@@ -67,7 +70,7 @@ const MovieDetails = () => {
         button: "OK",
       });
     } else {
-      fetch("http://localhost:3000/add-favorite", {
+      fetch("https://server-side-movie-portal.vercel.app/add-favorite", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -135,7 +138,7 @@ const MovieDetails = () => {
               data-aos="fade-right"
               data-aos-delay="300"
             >
-              Title: {movie.title}
+              {movie.title}
             </h1>
             <p
               className="text-gray-300 text-lg mb-4"

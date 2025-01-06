@@ -22,18 +22,24 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <Home />,
-        loader: () => fetch("http://localhost:3000/movies"),
       },
       {
         path: "/movie/:id",
         element: <MovieDetails />,
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/movie/${params.id}`),
+          fetch(
+            `https://server-side-movie-portal.vercel.app/movie/${params.id}`
+          ),
       },
       {
         path: "/all-movies",
-        element: <AllMovies />,
-        loader: () => fetch("http://localhost:3000/all-movies"),
+        element: (
+          <PrivateRoute>
+            <AllMovies />
+          </PrivateRoute>
+        ),
+        loader: () =>
+          fetch("https://server-side-movie-portal.vercel.app/all-movies"),
       },
       {
         path: "/favorites",
@@ -59,7 +65,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/movie/${params.id}`),
+          fetch(
+            `https://server-side-movie-portal.vercel.app/movie/${params.id}`
+          ),
       },
       {
         path: "/community",
@@ -68,24 +76,16 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "auth",
+    path: "/",
     element: <AuthLayout />,
     children: [
       {
         path: "/auth/login",
-        element: (
-          <AuthRedirect>
-            <Login />
-          </AuthRedirect>
-        ),
+        element: <Login />,
       },
       {
         path: "/auth/register",
-        element: (
-          <AuthRedirect>
-            <Register />
-          </AuthRedirect>
-        ),
+        element: <Register />,
       },
     ],
   },

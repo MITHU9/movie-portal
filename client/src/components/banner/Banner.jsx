@@ -24,7 +24,7 @@ const Banner = () => {
   ];
 
   return (
-    <div className="w-full mx-auto mt-2">
+    <div className="w-full  py-2 h-[60vh]">
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         navigation
@@ -36,7 +36,7 @@ const Banner = () => {
         {images.map((image, index) => (
           <SwiperSlide key={index}>
             <div
-              className="w-full h-[400px] md:h-[500px] bg-cover bg-center relative"
+              className="w-full h-[60vh] md:h-[60vh] bg-cover bg-center relative"
               style={{ backgroundImage: `url(${image.src})` }}
             >
               <div className="absolute inset-0 flex items-center justify-center">
