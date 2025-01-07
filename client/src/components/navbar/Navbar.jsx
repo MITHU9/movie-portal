@@ -167,11 +167,13 @@ const Navbar = () => {
         {/* Mobile Menu Button */}
         <div className="flex gap-2 md:hidden">
           <div className="relative group ">
-            <img
-              src={user?.photoURL || "https://via.placeholder.com/150"}
-              alt="User Profile"
-              className="w-7 h-7 rounded-full border-2 border-blue-400 shadow-md cursor-pointer"
-            />
+            {user && (
+              <img
+                src={user?.photoURL || "https://via.placeholder.com/150"}
+                alt="User Profile"
+                className="w-7 h-7 rounded-full border-2 border-blue-400 shadow-md cursor-pointer"
+              />
+            )}
             {user?.displayName && (
               <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 bg-white text-gray-700 text-sm font-medium py-1 px-2 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition z-50">
                 {user?.displayName}

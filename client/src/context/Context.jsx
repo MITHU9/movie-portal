@@ -137,7 +137,7 @@ const ContextProvider = ({ children }) => {
     }
   }, [dataLoad, user?.email]);
 
-  console.log(user);
+  //console.log(user);
 
   return (
     <MovieContext.Provider

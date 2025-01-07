@@ -66,23 +66,23 @@ const AllMovies = () => {
             className="mt-8 flex justify-center items-center"
             data-aos="fade-up"
           >
-            <div className="w-1/2 md:w-3/4 flex items-center justify-center">
+            <div className="w-1/2 md:w-3/4 flex items-center justify-center mx-4 ">
               {/* Search Input */}
               <input
                 type="text"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Search movies..."
-                className="bg-gray-800 text-white py-3 px-4 rounded-l-full pl-10 w-96 outline-none"
+                className="bg-gray-800 text-white py-3 px-4 rounded-l-full pl-10 w-96 outline-none "
               />
               {/* Search Button */}
               <button
                 onClick={handleSearch}
-                className="bg-blue-600 text-white py-3 px-6 rounded-r-full hover:bg-blue-700 transition-colors relative"
+                className="bg-blue-600 text-white py-3 px-6 rounded-r-full hover:bg-blue-700 transition-colors relative mr-4"
               >
                 <Search
                   size={20}
-                  className="absolute left-1 top-2 text-gray-200 mt-1.5"
+                  className="absolute left-1 top-2 text-gray-200 mt-1.5 "
                 />
                 Search
               </button>
