@@ -10,6 +10,18 @@ Currently, two official plugins are available:
 <h2>Project Name: CineVerse(Movie portal)</h2>
 <h3>Live link: <a href="https://movie-portal-by-mithu9.netlify.app/" >https://movie-portal-by-mithu9.netlify.app/</a> </h3>
 
+<h1>Technology used:</h1>
+<ul>
+<li>
+React
+</li>
+<li>JavaScript</li>
+<li>TailwindCSS</li>
+<li>NodeJs</li>
+<li>Express</li>
+<li>MongoDB</li>
+</ul>
+
 <h1>Features</h1>
 <ul>
 <li>user can see all the movie</li>
@@ -20,3 +32,7 @@ Currently, two official plugins are available:
 <li>user can see a movie details if the user is authenticated</li>
 <li>user can add a movie to his favorite list and can see list also</li>
 </ul>
+
+<h3>To run this application in local machine all u have to do</h3>
+<h4>for server: npm run backend</h4>
+<h4>for client: npm run dev</h4>
